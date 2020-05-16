@@ -28,7 +28,8 @@
   :plugins [[lein-ancient "0.6.15"]
             [io.taylorwood/lein-native-image "0.3.1"]]
   :native-image {:name "pod-lispyclouds-docker"
-                 :opts ["--initialize-at-build-time"
+                 :opts ["--no-server"
+                        "--initialize-at-build-time"
                         "--report-unsupported-elements-at-runtime"
                         "--allow-incomplete-classpath"
                         "--enable-url-protocols=http"

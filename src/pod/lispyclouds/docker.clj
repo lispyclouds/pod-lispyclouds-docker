@@ -1,3 +1,18 @@
+;   This file is part of pod-lispyclouds-docker.
+;
+;   pod-lispyclouds-docker is free software: you can redistribute it and/or modify
+;   it under the terms of the GNU Lesser General Public License as published by
+;   the Free Software Foundation, either version 3 of the License, or
+;   (at your option) any later version.
+;
+;   pod-lispyclouds-docker is distributed in the hope that it will be useful,
+;   but WITHOUT ANY WARRANTY; without even the implied warranty of
+;   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;   GNU Lesser General Public License for more details.
+;
+;   You should have received a copy of the GNU Lesser General Public License
+;   along with pod-lispyclouds-docker. If not, see <http://www.gnu.org/licenses/>.
+
 (ns pod.lispyclouds.docker
   (:refer-clojure :exclude [read read-string])
   (:require [clojure.edn :as edn]
@@ -72,12 +87,14 @@
                         (recur))
             :invoke   (do
                         (try
-                          (let [var  (-> (get message "var")
+                          (let [var  (-> message
+                                         (get "var")
                                          read-string
                                          symbol)
-                                args (get message "args")
-                                args (read-string args)
-                                args (edn/read-string args)]
+                                args (-> message
+                                         (get "args")
+                                         read-string
+                                         edn/read-string)]
                             (if-let [f (lookup var)]
                               (let [result (apply f args)
                                     value  (pr-str (if (map? result)

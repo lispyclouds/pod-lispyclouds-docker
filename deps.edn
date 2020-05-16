@@ -1,0 +1,35 @@
+;   This file is part of pod-lispyclouds-docker.
+;
+;   pod-lispyclouds-docker is free software: you can redistribute it and/or modify
+;   it under the terms of the GNU Lesser General Public License as published by
+;   the Free Software Foundation, either version 3 of the License, or
+;   (at your option) any later version.
+;
+;   pod-lispyclouds-docker is distributed in the hope that it will be useful,
+;   but WITHOUT ANY WARRANTY; without even the implied warranty of
+;   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;   GNU Lesser General Public License for more details.
+;
+;   You should have received a copy of the GNU Lesser General Public License
+;   along with pod-lispyclouds-docker. If not, see <http://www.gnu.org/licenses/>.
+
+{:deps    {org.clojure/clojure             {:mvn/version "1.10.1"}
+           lispyclouds/clj-docker-client   {:mvn/version "1.0.1"}
+           nrepl/bencode                   {:mvn/version "1.1.0"}
+           org.flatland/ordered            {:mvn/version "1.5.9"}}
+ :paths   ["src" "resources"]
+ :aliases {:native-image
+           {:main-opts  ["-m clj.native-image pod.lispyclouds.docker"
+                         "--no-server"
+                         "--initialize-at-build-time"
+                         "--allow-incomplete-classpath"
+                         "--report-unsupported-elements-at-runtime"
+                         "--enable-url-protocols=http"
+                         "--enable-url-protocols=https"
+                         "-H:Name=pod.lispyclouds.docker"
+                         "-H:Path=target"]
+            :jvm-opts   ["-Dclojure.compiler.direct-linking=true"
+                         "-Dclojure.spec.skip-macros=true"]
+            :extra-deps {clj.native-image
+                         {:git/url "https://github.com/taylorwood/clj.native-image.git"
+                          :sha     "602587dfb5243ea8c72ed3e967c37c1f9d611723"}}}}}
