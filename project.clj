@@ -20,7 +20,7 @@
   :license {:name "LGPL 3.0"
             :url  "https://www.gnu.org/licenses/lgpl-3.0.en.html"}
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [lispyclouds/clj-docker-client "1.0.1"]
+                 [lispyclouds/clj-docker-client "1.0.2"]
                  [nrepl/bencode "1.1.0"]
                  [org.flatland/ordered "1.5.9"]]
   :main pod.lispyclouds.docker

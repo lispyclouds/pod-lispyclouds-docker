@@ -1,0 +1,48 @@
+#   This file is part of pod-lispyclouds-docker.
+#
+#   pod-lispyclouds-docker is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU Lesser General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   pod-lispyclouds-docker is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU Lesser General Public License for more details.
+#
+#   You should have received a copy of the GNU Lesser General Public License
+#   along with pod-lispyclouds-docker. If not, see <http://www.gnu.org/licenses/>.
+
+name: "Build"
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup GraalVM
+        uses: DeLaGuardo/setup-graalvm@master
+        with:
+          graalvm-version: '20.3.0.java11'
+
+      - name: Setup Clojure
+        uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: '1.10.1.763'
+
+      - name: Install native image toolchain
+        run: $JAVA_HOME/bin/gu install native-image
+
+      - name: Build native image
+        run: mkdir target && clojure -M:native-image
+
+      - name: Collect Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: "bob-jars"
+          path: target/pod.lispyclouds.docker
