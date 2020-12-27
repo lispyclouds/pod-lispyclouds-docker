@@ -96,6 +96,9 @@ jobs:
       - name: Install native image toolchain
         run: gu.cmd install native-image
 
+      - name: Setup build tools
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build native image
         run: lein native-image
 
@@ -103,4 +106,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows-executable
-          path: target/default+uberjar/pod-lispyclouds-docker*
+          path: target/default+uberjar/pod-lispyclouds-docker.exe
