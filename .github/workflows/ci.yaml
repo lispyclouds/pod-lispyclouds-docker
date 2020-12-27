@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: linux-executable
-          path: target/pod.lispyclouds.docker
+          path: target/pod-lispyclouds-docker
 
   build-macos:
     runs-on: "macos-latest"
@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: mac-executable
-          path: target/pod.lispyclouds.docker
+          path: target/pod-lispyclouds-docker
 
   build-windows:
     runs-on: "windows-latest"

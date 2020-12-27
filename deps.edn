@@ -26,7 +26,7 @@
                          "--report-unsupported-elements-at-runtime"
                          "--enable-url-protocols=http"
                          "--enable-url-protocols=https"
-                         "-H:Name=pod.lispyclouds.docker"
+                         "-H:Name=pod-lispyclouds-docker"
                          "-H:Path=target"]
             :jvm-opts   ["-Dclojure.compiler.direct-linking=true"
                          "-Dclojure.spec.skip-macros=true"]
