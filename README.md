@@ -2,6 +2,8 @@
 
 A [babashka](https://github.com/borkdude/babashka) pod for interacting with docker. Uses the [clj-docker-client](https://github.com/into-docker/clj-docker-client) to function.
 
+#### NOTICE: [contajners](https://github.com/lispyclouds/contajners) is recommended to use instead of this pod. It is source compatible with babashka and supports much more features and has less limitations as compared to the this pod. Also more engines like podman are supported.
+
 ## Building prerequisites
 - [Graal VM](https://www.graalvm.org/downloads/)
 - [Clojure CLI](https://clojure.org/guides/getting_started)(faster) or [Leiningen](https://leiningen.org/)(better windows support)
